@@ -30,8 +30,7 @@ RUN mkdir -p /home/faraday && chown -R 1001:1001 /home/faraday
 
 USER 1001
 
-RUN pip install -U pip --no-cache-dir \
-    && pip install . --no-cache-dir \
+RUN pip install . --no-cache-dir \
     && chmod +x /entrypoint.sh
 
 USER 0
