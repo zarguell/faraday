@@ -18,8 +18,8 @@ jobs:
     - name: Clone/Copy Remote
       run: |-
         git clone https://github.com/infobyte/faraday.git
-        rsync -a --exclude={'Dockerfile','.gitlab','.git','.gitignore','.github'} faraday/ ./
-        rm -rf faraday/
+        rsync -a --exclude={'Dockerfile','.gitlab','.git','.gitignore','.github'} faraday-src/ ./
+        rm -rf faraday-src/
 
     - name: Commit and push if it changed
       run: |-
