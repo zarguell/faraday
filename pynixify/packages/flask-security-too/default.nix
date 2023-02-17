@@ -7,9 +7,9 @@
 , email_validator
 , fetchPypi
 , flask
+, flask-wtf
 , flask_login
 , flask_principal
-, flask_wtf
 , itsdangerous
 , lib
 , passlib
@@ -36,7 +36,7 @@ buildPythonPackage rec {
       flask
       flask_login
       flask_principal
-      flask_wtf
+      flask-wtf
       email_validator
       itsdangerous
       passlib
