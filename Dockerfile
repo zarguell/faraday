@@ -22,6 +22,8 @@ RUN dnf install -y mailcap wget nmap-ncat \
  && chown faraday:faraday /entrypoint.sh \
  && chown faraday:faraday /docker_server.ini
 
+RUN usermod -aG faraday faraday
+
 USER faraday
 WORKDIR /home/faraday
 
