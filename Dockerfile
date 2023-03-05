@@ -19,6 +19,8 @@ RUN dnf install -y mailcap wget \
  && rpm -ivh faraday-server_amd64.rpm \
  && rm -f faraday-server_amd64.rpm \
  && chown -R faraday:faraday /home/faraday/
+ && chown faraday:faraday /entrypoint.sh
+ && chown faraday:faraday /docker_server.ini
 
 USER faraday
 WORKDIR /home/faraday
@@ -31,5 +33,8 @@ RUN mkdir -p /home/faraday/.faraday/storage
 
 ENV PYTHONUNBUFFERED 1
 ENV FARADAY_HOME /home/faraday
+
+EXPOSE 5985
+EXPOSE 9000
 
 ENTRYPOINT ["/entrypoint.sh"]
