@@ -13,7 +13,7 @@ RUN dnf update -y --nodocs && \
 		rm -rf /var/cache/yum && \
 		dnf remove -y vim-minimal
 
-RUN dnf install -y mailcap wget \
+RUN dnf install -y mailcap wget nmap-ncat \
  && RELEASE_URL=$(curl -s https://api.github.com/repos/infobyte/faraday/releases/latest | grep "browser_download_url.*\.rpm" | cut -d : -f 2,3 | tr -d \") \
  && wget $RELEASE_URL \
  && rpm -ivh faraday-server_amd64.rpm \
