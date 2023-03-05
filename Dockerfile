@@ -5,6 +5,9 @@ ARG BASE_TAG=latest
 
 FROM ${BASE_REGISTRY}/${BASE_IMAGE}:${BASE_TAG}
 
+COPY ./docker/entrypoint.sh /entrypoint.sh
+COPY ./docker/server.ini /docker_server.ini
+
 RUN dnf update -y --nodocs && \
 		dnf clean all && \
 		rm -rf /var/cache/yum && \
@@ -17,10 +20,16 @@ RUN dnf install -y mailcap wget \
  && rm -f faraday-server_amd64.rpm \
  && chown -R faraday:faraday /home/faraday/
 
-COPY server.ini /home/faraday/.faraday/config/server.ini
-RUN chown faraday:faraday /home/faraday/.faraday/config/server.ini
-
 USER faraday
-RUN /opt/faraday/bin/faraday-manage create-tables
+WORKDIR /home/faraday
 
-CMD ["/opt/faraday/bin/faraday-server"]
+RUN mkdir -p /home/faraday/.faraday/config
+RUN mkdir -p /home/faraday/.faraday/logs
+RUN mkdir -p /home/faraday/.faraday/session
+RUN mkdir -p /home/faraday/.faraday/storage
+
+
+ENV PYTHONUNBUFFERED 1
+ENV FARADAY_HOME /home/faraday
+
+ENTRYPOINT ["/entrypoint.sh"]
