@@ -18,8 +18,8 @@ RUN dnf install -y mailcap wget \
  && wget $RELEASE_URL \
  && rpm -ivh faraday-server_amd64.rpm \
  && rm -f faraday-server_amd64.rpm \
- && chown -R faraday:faraday /home/faraday/
- && chown faraday:faraday /entrypoint.sh
+ && chown -R faraday:faraday /home/faraday/ \
+ && chown faraday:faraday /entrypoint.sh \
  && chown faraday:faraday /docker_server.ini
 
 USER faraday
