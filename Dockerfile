@@ -35,6 +35,7 @@ RUN mkdir -p /home/faraday/.faraday/storage
 
 ENV PYTHONUNBUFFERED 1
 ENV FARADAY_HOME /home/faraday
+ENV PATH="${PATH}:/opt/faraday/bin/"
 
 EXPOSE 5985
 EXPOSE 9000
